@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend-app
+    tier: frontend
+spec: 
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend-app
+  template:
+    metadata:
+      name: frontend-app-pod
+      labels: 
+        app: frontend-app
+        tier: frontend
+    spec:
+      containers:
+      - name: frontend-app-nginx-container
+        image: praravind1801/deployment-frontend:v1
+        ports:
+        - containerPort: 80
